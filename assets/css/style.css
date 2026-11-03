@@ -96,6 +96,9 @@ h1, h2, h3, h4, p { margin: 0; }
   overflow: hidden; background: #111; color: var(--white);
   min-height: 750px; display: flex; flex-direction: column; justify-content: flex-end;
 }
+/* iOS: skryje šedé tlačítko play, když systém zablokuje autoplay (úsporný režim) */
+video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
+video::-webkit-media-controls { display: none !important; }
 .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.1) 55%, rgba(0,0,0,0) 100%); pointer-events: none; }
 .hero-content { position: relative; z-index: 2; padding: 0 56px; margin-bottom: 76px; }
@@ -133,26 +136,19 @@ h1, h2, h3, h4, p { margin: 0; }
 }
 @keyframes float { 50% { transform: translateY(-8px); } }
 
-.control { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding: 40px 0 100px; pointer-events: none; }
+.control { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding: 32px 0 56px; pointer-events: none; }
 .control > * { pointer-events: auto; }
 .scene-t2 { opacity: 0; }
-.control-fit { position: relative; width: 860px; height: calc(560px * var(--s, 1)); margin-top: 48px; }
+.control-fit { position: relative; width: 860px; height: calc(560px * var(--s, 1)); margin-top: 40px; }
 .control-stage { position: absolute; left: 50%; top: 0; width: 860px; height: 560px; transform: translateX(-50%) scale(var(--s, 1)); transform-origin: top center; }
-.control-phone { position: absolute; left: 50%; top: 22px; width: 262px; margin-left: -131px; will-change: transform, opacity; }
-.notif {
-  position: absolute; display: flex; align-items: center; gap: 16px;
-  padding: 16px 40px 16px 18px; background: var(--white); border-radius: 18px;
-  border: 1px solid rgba(0,0,0,.06); box-shadow: 0 12px 30px rgba(0,0,0,.07);
-  font-size: 16px; line-height: 24px; white-space: nowrap; width: max-content; opacity: 0; will-change: transform, opacity;
-}
-.notif strong { display: block; font-weight: 500; color: #2C2C2E; }
-.notif span { color: #3A3A3C; }
-.notif-ico { flex: none; width: 32px; height: 32px; }
-.n1 { left: 375px; top: 0; }
-.n2 { left: -118px; top: 144px; }
-.n3 { left: 530px; top: 288px; }
-.n4 { left: -12px; top: 432px; }
-.scene-cta { margin-top: 32px; opacity: 0; }
+.control-phone { position: absolute; left: 50%; top: 22px; width: 263px; height: auto; margin-left: -131.5px; }
+.notif { position: absolute; opacity: 0; line-height: 0; }
+.notif img { display: block; width: auto; height: 78px; max-width: none; filter: drop-shadow(1px 1px 1.5px rgba(0,0,0,.06)) drop-shadow(4px 4px 4px rgba(0,0,0,.05)) drop-shadow(9px 9px 8px rgba(0,0,0,.035)) drop-shadow(17px 16px 10px rgba(0,0,0,.02)); }
+.n1 { left: 375px; top: 2px; }
+.n2 { left: -121px; top: 146px; }
+.n3 { left: 530px; top: 290px; }
+.n4 { left: -13px; top: 434px; }
+.scene-cta { margin-top: 28px; opacity: 0; }
 /* bez JS nebo s omezeným pohybem: obě části pod sebou, bez připnutí */
 .no-scene .scene { height: auto; }
 .no-scene .scene-sticky { position: relative; height: auto; min-height: 0; overflow: visible; }
@@ -194,6 +190,7 @@ h1, h2, h3, h4, p { margin: 0; }
 /* MacBook usazený vpravo, přesahuje pravý okraj boxu (podle návrhu) */
 .features-media video { position: absolute; left: 31.4%; top: -3.8%; width: 105.7%; max-width: none; height: auto; opacity: 0; transition: opacity .4s; }
 .features-media video.active { opacity: 1; }
+.features-desc { display: none; }
 
 .why { margin-top: 100px; }
 .bento { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 0 var(--gutter); margin-top: 48px; }
@@ -213,6 +210,7 @@ h1, h2, h3, h4, p { margin: 0; }
 .bc-photo h3 { padding-top: 46px; }
 .bc-time { aspect-ratio: 696 / 432; }
 .bc-time .bg { filter: none; }
+.bc-time .time-card { height: auto; display: block; }
 .bc-time .time-card { position: absolute; z-index: 2; left: 9.2%; right: 9.2%; bottom: 0; width: 81.6%; }
 .bc-time::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.15) 60%, rgba(0,0,0,.4)); }
 .bc-tablet::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0) 30%, rgba(0,0,0,.25)); }
@@ -467,16 +465,23 @@ h1, h2, h3, h4, p { margin: 0; }
   .control-fit { width: 360px; }
   .control-stage { width: 360px; }
   .control-phone { top: 30px; }
-  .notif { padding: 12px 16px; gap: 12px; font-size: 14px; line-height: 20px; white-space: normal; width: 300px; border-radius: 16px; }
-  .notif-ico { width: 28px; height: 28px; }
-  .n1 { left: 60px; top: 0; } .n2 { left: 0; top: 150px; } .n3 { left: 60px; top: 300px; } .n4 { left: 0; top: 450px; }
-  .features-box { aspect-ratio: auto; }
-  .features-nav { position: relative; padding: 32px 20px 0; }
-  .features-arrows { display: none; }
-  .features-list { flex-direction: row; flex-wrap: wrap; gap: 8px; }
-  .feature-tab[aria-selected="true"] { max-width: 100%; }
-  .features-media { position: relative; aspect-ratio: 16 / 9; }
+  .notif img { height: 64px; }
+  .n1 { left: auto; right: 0; top: 10px; } .n2 { left: 0; top: 160px; } .n3 { left: auto; right: 0; top: 310px; } .n4 { left: 0; top: 460px; }
+  /* mobil: video nahoře, pod ním vodorovně posuvný pruh záložek a popis vybrané funkce */
+  .features-box { aspect-ratio: auto; display: flex; flex-direction: column; padding: 24px 0 28px; }
+  .features-media { order: 1; position: relative; aspect-ratio: 16 / 9; margin: 0 12px; }
   .features-media video { left: 0; top: 0; width: 100%; }
+  .features-nav { order: 2; position: relative; padding: 20px 0 0; display: block; }
+  .features-arrows { display: none; }
+  .features-list { flex-direction: row; flex-wrap: nowrap; align-items: center; gap: 8px; overflow-x: auto; scroll-snap-type: x proximity; padding: 0 20px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .features-list::-webkit-scrollbar { display: none; }
+  .features-list li { flex: none; scroll-snap-align: center; }
+  .feature-tab { padding: 10px 18px; font-size: 15px; line-height: 22px; white-space: nowrap; background: #1C1C1E; }
+  .feature-tab[aria-selected="true"] { max-width: none; border-radius: 24px; background: var(--yellow); color: #1D1D1F; }
+  .feature-tab[aria-selected="true"] .name { display: inline; font-weight: 600; }
+  .feature-tab[aria-selected="true"] .desc { display: none; }
+  .features-desc { order: 3; display: block; margin: 16px 20px 0; padding: 16px 20px; background: #2C2C2E; border-radius: 16px; color: var(--white); font-size: 15px; line-height: 22px; min-height: 88px; }
+  .features-desc b { font-weight: 600; }
   .bento { grid-template-columns: 1fr; }
   .bc-tablet h3 { padding-left: 40px; }
   .trial { grid-template-columns: 1fr; padding: 48px 24px 0; }
@@ -536,4 +541,12 @@ h1, h2, h3, h4, p { margin: 0; }
   .help-side { grid-template-columns: 1fr 1fr; }
   .help-side a { min-height: 52px; padding: 0 14px; font-size: 14px; }
   .trial { padding: 40px 20px 0; }
+}
+
+/* nižší okna (notebooky): menší titulek scény a okraje, aby telefon a bubliny zůstaly velké */
+@media (min-width: 961px) and (max-height: 900px) {
+  .scene-t2 { font-size: clamp(40px, 6.2vh, 64px); line-height: 1.05; }
+  .control { padding: 20px 0 40px; }
+  .control-fit { margin-top: 28px; }
+  .scene-cta { margin-top: 20px; }
 }

@@ -18,6 +18,10 @@ def nico(path):
     return ('<svg class="notif-ico" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#FFB82F"/>'
             f'<g fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{path}</g></svg>')
 
+# karta „Šetří čas" vložená přímo do HTML (jako <img> se v některých prohlížečích nenačetla)
+TIME_CARD = (ROOT / "assets/svg/karta-setri-cas.svg").read_text().replace(
+    '<svg ', '<svg class="time-card" role="img" aria-label="Papírový deník 8 hodin týdně, s BULDO 1 hodina. O 7 hodin méně papírování každý týden." ', 1)
+
 ICO_DENIK = '<img class="notif-ico" src="assets/svg/ikony/notif-denik.svg" alt="" width="32" height="32">'
 ICO_VICE = '<img class="notif-ico" src="assets/svg/ikony/notif-viceprace.svg" alt="" width="32" height="32">'
 ICO_FOTO = '<img class="notif-ico" src="assets/svg/ikony/notif-fotky.svg" alt="" width="32" height="32">'
@@ -174,6 +178,7 @@ def features():
         <ul class="features-list" role="tablist" aria-label="Hlavní funkce">{"".join(tabs)}</ul>
       </div>
       <div class="features-media">{"".join(vids)}</div>
+      <p class="features-desc" aria-live="polite">{FEATURES[0][1]}</p>
     </div>'''
 
 PLANS = [
@@ -272,11 +277,11 @@ home_body = f'''<section class="hero" id="hero" aria-labelledby="hero-title">
       <h2 class="h-section scene-t2">S BULDO máte vše<br>pod kontrolou.</h2>
       <div class="control-fit">
         <div class="control-stage">
-          <img class="control-phone" src="assets/img/telefon.png" alt="Aplikace BULDO v mobilu, přehled staveb" width="263" height="535">
-          <div class="notif n1" style="--i:0">{ICO_VICE}<div><strong>Vícepráce schválena</strong><span>Terasa · 42 000 Kč · 5 fotek</span></div></div>
-          <div class="notif n2" style="--i:1">{ICO_DENIK}<div><strong>Stavební deník aktualizován</strong><span>Klínovec · Materiál dorazil na stavbu</span></div></div>
-          <div class="notif n3" style="--i:2">{ICO_FOTO}<div><strong>Nové fotografie ze stavby</strong><span>Bylo přidáno 8 fotografií průběhu prací.</span></div></div>
-          <div class="notif n4" style="--i:3">{ICO_OK}<div><strong>Úkol dokončen</strong><span>Montáž oken · Hotovo v termínu</span></div></div>
+          <img class="control-phone" src="assets/img/telefon@2x.png" alt="Aplikace BULDO v mobilu, přehled staveb" width="263" height="535">
+          <div class="notif n1" style="--i:0"><img src="assets/svg/bubliny/viceprace.svg" alt="Vícepráce schválena. Terasa, 42 000 Kč, 5 fotek." width="303" height="78"></div>
+          <div class="notif n2" style="--i:1"><img src="assets/svg/bubliny/denik.svg" alt="Stavební deník aktualizován. Klínovec, materiál dorazil na stavbu." width="354" height="78"></div>
+          <div class="notif n3" style="--i:2"><img src="assets/svg/bubliny/fotky.svg" alt="Nové fotografie ze stavby. Bylo přidáno 8 fotografií průběhu prací." width="377" height="78"></div>
+          <div class="notif n4" style="--i:3"><img src="assets/svg/bubliny/hotovo.svg" alt="Úkol dokončen. Montáž oken, hotovo v termínu." width="328" height="78"></div>
         </div>
       </div>
       <a class="btn btn-yellow scene-cta" href="{REGISTER}">Vyzkoušet zdarma</a>
@@ -295,7 +300,7 @@ home_body = f'''<section class="hero" id="hero" aria-labelledby="hero-title">
     <div class="bento">
       <div class="bento-col">
         <article class="bcard bc-all reveal"><img src="assets/svg/karta-vse-na-jednom-miste.svg" alt="" loading="lazy"><h3>Vše na jednom místě</h3></article>
-        <article class="bcard bc-photo bc-time reveal"><img class="bg" src="assets/img/rect-4146.png" alt="" loading="lazy"><h3>Šetří váš čas a peníze</h3><img class="time-card" src="assets/svg/karta-setri-cas.svg" alt="Papírový deník 8 hodin týdně, s BULDO 1 hodina. O 7 hodin méně papírování každý týden." loading="lazy"></article>
+        <article class="bcard bc-photo bc-time reveal"><img class="bg" src="assets/img/rect-4146.png" alt="" loading="lazy"><h3>Šetří váš čas a peníze</h3>{TIME_CARD}</article>
         <article class="bcard bc-lost reveal"><img src="assets/svg/karta-nic-neztrati.svg" alt="" loading="lazy"><h3>Už se vám nic neztratí</h3></article>
       </div>
       <div class="bento-col">

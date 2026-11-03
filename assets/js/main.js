@@ -16,8 +16,12 @@
     const tryPlay = () => { const pr = hero.play(); if (pr) pr.catch(() => {}); };
     tryPlay();
     // iOS v úsporném režimu blokuje autoplay, video se pak spustí při prvním dotyku nebo scrollu
-    const kick = () => { tryPlay(); ['touchstart', 'scroll', 'click'].forEach(e => window.removeEventListener(e, kick)); };
-    ['touchstart', 'scroll', 'click'].forEach(e => window.addEventListener(e, kick, { passive: true }));
+    // posluchače zůstávají, dokud video opravdu nehraje (scroll sám o sobě není gesto, dotyk ano)
+    const evs = ['touchstart', 'touchend', 'pointerdown', 'scroll', 'click'];
+    const kick = () => { if (hero.paused) tryPlay(); };
+    evs.forEach(e => window.addEventListener(e, kick, { passive: true }));
+    hero.addEventListener('playing', () => evs.forEach(e => window.removeEventListener(e, kick)));
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) tryPlay(); });
   }
 
   /* ---------- Mobilní menu ---------- */
@@ -81,9 +85,13 @@
       const measure = () => {
         // měřítko telefonu a bublin podle výšky okna
         const mobile = window.innerWidth <= 960;
-        const availH = window.innerHeight - (mobile ? 330 : 420);
-        const availW = window.innerWidth - 16;
-        const s = clamp(Math.min(availH / 560, availW / (mobile ? 360 : 860)), .55, 1);
+        // výška, která zbývá po titulku, tlačítku a okrajích (měřeno, ne odhadem)
+        const ctl = fit.parentElement, cs = getComputedStyle(ctl);
+        const used = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom) + t2.offsetHeight
+          + parseFloat(getComputedStyle(fit).marginTop) + cta.offsetHeight + parseFloat(getComputedStyle(cta).marginTop);
+        const availH = Math.max(window.innerHeight, 640) - used;
+        const availW = window.innerWidth - (mobile ? 24 : 40);
+        const s = clamp(Math.min(availH / 560, availW / (mobile ? 360 : 860)), mobile ? .7 : .8, mobile ? 1 : 1.12);
         fit.style.setProperty('--s', s.toFixed(3));
         // výchozí pozice bez transformací
         items.forEach(el => (el.style.transform = 'none'));
@@ -134,7 +142,7 @@
           const q = range(p, .58 + i * .07, .66 + i * .07);
           const e = 1 - Math.pow(1 - q, 3);
           n.style.opacity = q;
-          n.style.transform = `translateY(${(1 - e) * 18}px) scale(${.86 + .14 * e})`;
+          n.style.transform = e >= 1 ? 'none' : `translateY(${(1 - e) * 18}px) scale(${.86 + .14 * e})`;
         });
 
         // 6) tlačítko
@@ -158,6 +166,7 @@
     const videos = tabs.map(t => document.getElementById(t.getAttribute('aria-controls')));
     const prev = document.querySelector('.f-prev'), next = document.querySelector('.f-next');
     let cur = 0;
+    const mdesc = document.querySelector('.features-desc');
     const play = v => { const pr = v.play(); if (pr) pr.catch(() => {}); };
     const select = (i, focus) => {
       i = clamp(i, 0, tabs.length - 1);
@@ -169,6 +178,13 @@
         } else { v.classList.remove('active'); v.pause(); }
       });
       cur = i;
+      if (mdesc) mdesc.innerHTML = tabs[i].querySelector('.desc').innerHTML;
+      // na mobilu posunout vybranou záložku do středu pruhu
+      const list = tabs[i].closest('.features-list');
+      if (list && list.scrollWidth > list.clientWidth) {
+        const li = tabs[i].parentElement;
+        list.scrollTo({ left: li.offsetLeft - (list.clientWidth - li.offsetWidth) / 2, behavior: 'smooth' });
+      }
       prev.disabled = i === 0; next.disabled = i === tabs.length - 1;
       if (focus) tabs[i].focus();
     };
