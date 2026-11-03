@@ -150,7 +150,7 @@ h1, h2, h3, h4, p { margin: 0; }
 .notif-ico { flex: none; width: 32px; height: 32px; }
 .n1 { left: 375px; top: 0; }
 .n2 { left: -118px; top: 144px; }
-.n3 { left: 363px; top: 288px; }
+.n3 { left: 530px; top: 288px; }
 .n4 { left: -12px; top: 432px; }
 .scene-cta { margin-top: 32px; opacity: 0; }
 /* bez JS nebo s omezeným pohybem: obě části pod sebou, bez připnutí */
@@ -281,7 +281,7 @@ h1, h2, h3, h4, p { margin: 0; }
 /* ---------- Žlutý pruh ---------- */
 .help-bar {
   display: flex; align-items: center; gap: 12px 40px; flex-wrap: wrap;
-  margin: 24px var(--gutter) 0; padding: 32px; border-radius: var(--radius);
+  margin: 16px var(--gutter) 0; padding: 32px; border-radius: var(--radius);
   background: var(--yellow); box-shadow: 0 16px 30px rgba(0,0,0,.08); font-size: 20px; letter-spacing: -.01em;
 }
 .help-bar a { white-space: nowrap; }

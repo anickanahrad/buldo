@@ -325,13 +325,13 @@ home_body = f'''<section class="hero" id="hero" aria-labelledby="hero-title">
 
   <h2 class="h-section compare-title">Který tarif vybrat?</h2>
   {compare()}
-  <p class="compare-note">Ceny jsou uvedeny za uživatele za měsíc, Profi+ celkem za měsíc pro 40-100 uživatelů. Programování na míru 1000 Kč / hod.</p>
 
   <div class="help-bar reveal">
     <p><b>Nejste si jistí, který tarif zvolit?</b><span>Zavolejte nám, nebo nám napište, poradíme podle velikosti vaší firmy.</span></p>
     <a href="tel:+420737280800">+420 737 280 800</a>
     <a href="mailto:podpora@buldo.cz">podpora@buldo.cz</a>
   </div>
+  <p class="compare-note">Ceny jsou uvedeny za uživatele za měsíc, Profi+ celkem za měsíc pro 40-100 uživatelů. Programování na míru 1000 Kč / hod.</p>
 </section>
 
 <section class="articles" aria-labelledby="clanky-title">
