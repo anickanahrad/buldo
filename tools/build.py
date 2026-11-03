@@ -3,6 +3,8 @@
 Spuštění:  python3 tools/build.py   (z kořene repozitáře)
 Výsledné .html soubory jsou hotové pro GitHub Pages, build není při nasazení potřeba."""
 from pathlib import Path
+import time
+VER = time.strftime("%Y%m%d%H%M")  # mění adresu CSS/JS při každém buildu, aby prohlížeč nebral starou verzi z cache
 
 ROOT = Path(__file__).resolve().parent.parent
 REGISTER = "https://app.buldo.cz/register"
@@ -132,13 +134,13 @@ def page(title, desc, body, dark_header=False, current=""):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/style.css?v={VER}">
 </head>
 <body>
 {header(dark_header, current) if not dark_header else ""}
 {body}
 {FOOTER}
-<script src="assets/js/main.js" defer></script>
+<script src="assets/js/main.js?v={VER}" defer></script>
 </body>
 </html>
 '''
