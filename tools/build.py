@@ -220,7 +220,9 @@ def compare():
         rows.append(f"<tr><th scope=\"row\"><b>{name}</b><small>{sub}</small></th>{tds}</tr>")
     y = "".join(f"<td>{kc(p[2][0])}</td>" for p in PLANS)
     m = "".join(f"<td>{kc(p[2][1])}</td>" for p in PLANS)
-    return f'''<div class="compare reveal"><table>
+    tabs = "".join(f'<button type="button" role="tab" aria-selected="{"true" if i == 0 else "false"}" data-col="{i + 2}">{p[0]}</button>' for i, p in enumerate(PLANS))
+    return f'''<div class="compare-tabs" role="tablist" aria-label="Vyberte tarif k porovnání">{tabs}</div>
+<div class="compare reveal" data-col="2"><table>
   <thead><tr><th><span class="sr-only">Funkce</span></th><th scope="col">Basic</th><th scope="col">Standard</th><th scope="col">Profi</th><th scope="col">Profi+</th></tr></thead>
   <tbody>{"".join(rows)}</tbody>
   <tfoot><tr><th scope="row">Cena při roční platbě</th>{y}</tr><tr><th scope="row">Cena při měsíční platbě</th>{m}</tr></tfoot>

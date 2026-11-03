@@ -196,6 +196,14 @@
     set(pricing.dataset.period);
   }
 
+  /* ---------- Tabulka tarifů: přepínač na mobilu ---------- */
+  const ctabs = [...document.querySelectorAll('.compare-tabs button')];
+  const ctable = document.querySelector('.compare');
+  ctabs.forEach(b => b.addEventListener('click', () => {
+    ctabs.forEach(x => x.setAttribute('aria-selected', String(x === b)));
+    ctable.dataset.col = b.dataset.col;
+  }));
+
   /* ---------- Články: Načíst více ---------- */
   const more = document.querySelector('[data-more]');
   if (more) more.addEventListener('click', () => {
