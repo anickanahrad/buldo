@@ -434,28 +434,15 @@ kontakt_body = f'''<main>
 </main>'''
 
 # ---------- PORADNA ----------
-HELP = [
-    ("Úvod do používání aplikace BULDO", "uvod", ["Přihlášení do aplikace", "Nastavení účtu / profilu", "Změna hesla", "Změna jazykové mutace v aplikaci", "Vytvoření certifikovaného podpisu", "Pozvání nového člena do aplikace / účtu", "Předplatné aplikace Buldo", "Kontakty na podporu", "Odstranění účtu"]),
-    ("Zaměstnanci", "zamestnanci", ["Přidání nového zaměstnance", "Úprava údajů zaměstnance", "Odstranění zaměstnance", "Vyhledávání a řazení zaměstnanců"]),
-    ("Stroje a nářadí", "stroje", ["Přidání nového stroje / nářadí", "Úprava položky stroje / nářadí", "Odstranění stroje / nářadí ze seznamu"]),
-    ("Pracovní skupiny", "skupiny", ["Vytvoření pracovní skupiny", "Úprava pracovní skupiny", "Odstranění pracovní skupiny"]),
-    ("Management", "management", ["Profil účtu", "Členové", "Zabezpečení", "Vlastní logo"]),
-    ("Stavby", "stavby", ["Přehled staveb", "Změna pořadí staveb", "Vytvoření nové stavby", "Kopírování údajů stavby"]),
-    ("Stavební deník", "denik", 21), ("Pracovní skupiny na stavbě", "skupiny-stavba", 3), ("Osoby na stavbě", "osoby", 3),
-    ("Stroje na stavbě", "stroje-stavba", 4), ("Statistiky", "statistiky", 3), ("Dokumenty", "dokumenty", 6),
-    ("Vícepráce", "viceprace", 3), ("Uživatelé stavby", "uzivatele", 3), ("Profil stavby", "profil-stavby", 3),
-]
-HELP_ANSWER = "Text návodu doplníme z aktuální nápovědy BULDO."
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from help_data import HELP
 
 def help_page():
     side, main = [], []
     for name, slug, items in HELP:
-        n = len(items) if isinstance(items, list) else items
-        side.append(f'<a href="#{slug}">{name} <span class="count">{n}</span></a>')
-        if isinstance(items, list):
-            rows = acc([(t, HELP_ANSWER) for t in items])
-        else:
-            rows = acc([(f"Návody v kategorii {name} ({n})", "Návody této kategorie doplníme z aktuální nápovědy BULDO.")])
+        side.append(f'<a href="#{slug}">{name} <span class="count">{len(items)}</span></a>')
+        rows = "\n".join(f'<details><summary>{q}<span class="plus" aria-hidden="true"></span></summary><div class="answer">{a}</div></details>' for q, a in items)
         main.append(f'<section id="{slug}" data-help-section><h2>{name}</h2><div class="acc">{rows}</div></section>')
     return f'''<main>
 <section class="page-hero">

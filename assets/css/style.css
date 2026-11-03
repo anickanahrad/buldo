@@ -327,6 +327,12 @@ video::-webkit-media-controls { display: none !important; }
 .acc details[open] .plus::after { transform: rotate(0); }
 .acc .answer { padding: 0 24px 24px; font-size: 16px; line-height: 26px; color: var(--ink-2); max-width: 900px; }
 .acc .answer p + p { margin-top: 10px; }
+.acc .answer ol, .acc .answer ul { margin: 10px 0; padding-left: 22px; display: grid; gap: 6px; }
+.acc .answer ol:first-child, .acc .answer ul:first-child { margin-top: 0; }
+.acc .answer b { font-weight: 600; color: var(--ink); }
+.acc .answer a { color: var(--ink); }
+.acc .answer .note { margin-top: 12px; padding: 12px 16px; background: #FFF4DC; border-radius: 12px; color: #5E4300; }
+.acc .answer .note b { color: #5E4300; }
 .faq-more { margin-top: 60px; text-align: center; font-size: 20px; }
 .faq-more .btn { margin-top: 24px; }
 
