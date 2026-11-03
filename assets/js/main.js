@@ -8,6 +8,18 @@
   const ease = t => 1 - Math.pow(1 - t, 3);
   const easeInOut = t => (t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
+  /* ---------- Hero video: menší soubor pro mobil a záložní spuštění ---------- */
+  const hero = document.querySelector('.hero-video');
+  if (hero) {
+    hero.muted = true; hero.defaultMuted = true; hero.playsInline = true;
+    if (window.innerWidth < 768 && hero.dataset.mobile) hero.src = hero.dataset.mobile;
+    const tryPlay = () => { const pr = hero.play(); if (pr) pr.catch(() => {}); };
+    tryPlay();
+    // iOS v úsporném režimu blokuje autoplay, video se pak spustí při prvním dotyku nebo scrollu
+    const kick = () => { tryPlay(); ['touchstart', 'scroll', 'click'].forEach(e => window.removeEventListener(e, kick)); };
+    ['touchstart', 'scroll', 'click'].forEach(e => window.addEventListener(e, kick, { passive: true }));
+  }
+
   /* ---------- Mobilní menu ---------- */
   const burger = document.querySelector('.nav-burger');
   if (burger) {

@@ -244,7 +244,7 @@ def chaos_items():
     return "\n      ".join(out)
 
 home_body = f'''<section class="hero" id="hero" aria-labelledby="hero-title">
-  <video class="hero-video" src="assets/video/herovideo.mp4" poster="assets/img/hero-poster.jpg" autoplay muted loop playsinline aria-hidden="true"></video>
+  <video class="hero-video" src="assets/video/herovideo.mp4" data-mobile="assets/video/herovideo-mobil.mp4" poster="assets/img/hero-poster.jpg" autoplay muted loop playsinline aria-hidden="true"></video>
   {header(True, "")}
   <div class="hero-content">
     <div class="hero-rating"><span class="stars" aria-hidden="true">{STAR * 5}</span><span>5.0</span><span class="sr-only">hodnocení 5 z 5</span></div>
