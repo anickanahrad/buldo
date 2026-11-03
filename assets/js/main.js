@@ -69,7 +69,7 @@
       const measure = () => {
         // měřítko telefonu a bublin podle výšky okna
         const mobile = window.innerWidth <= 960;
-        const availH = window.innerHeight - (mobile ? 300 : 330);
+        const availH = window.innerHeight - (mobile ? 330 : 420);
         const availW = window.innerWidth - 16;
         const s = clamp(Math.min(availH / 560, availW / (mobile ? 360 : 860)), .55, 1);
         fit.style.setProperty('--s', s.toFixed(3));

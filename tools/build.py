@@ -39,7 +39,7 @@ LOGOS = [f"logo-klient{s}.png" for s in ["", "-1", "-2", "-3", "-4", "-5", "-6",
 
 def marquee():
     imgs = "".join(f'<img src="assets/img/{l}" alt="" loading="lazy">' for l in LOGOS)
-    return f'<div class="marquee" aria-hidden="true"><div class="marquee-track">{imgs}{imgs}</div></div>'
+    return f'<div class="marquee" aria-hidden="true"><div class="marquee-track">{imgs * 4}</div></div>'
 
 # ---------- společné části ----------
 NAV = [("Hlavní funkce", "index.html#funkce", "funkce"), ("Ceník", "index.html#cenik", "cenik"),
@@ -78,7 +78,7 @@ FOOTER = f'''<footer class="footer">
 TRIAL = f'''<section class="trial reveal" aria-labelledby="trial-title">
   <div>
     <h2 id="trial-title">Vyzkoušejte BULDO<br>na 14 dní zdarma</h2>
-    <p>Založení účtu zabere pár minut. Po zkušební době si vyberete tarif, nebo účet jednoduše necháte být.</p>
+    <p>Založení účtu zabere pár minut. Po zkušební době si<br class="br-d"> vyberete tarif, nebo účet jednoduše necháte být.</p>
     <a class="btn btn-dark" href="{REGISTER}">Začít zdarma</a>
   </div>
   <div class="trial-img"><img src="assets/img/app-mockup.png" alt="Aplikace BULDO na notebooku a v mobilu" width="871" height="463" loading="lazy"></div>
@@ -86,15 +86,15 @@ TRIAL = f'''<section class="trial reveal" aria-labelledby="trial-title">
 
 FAQ_ITEMS = [
     ("Na jakých zařízeních můžu aplikaci používat?",
-     "BULDO funguje v internetovém prohlížeči na počítači, tabletu i mobilním telefonu. Nic se neinstaluje, stačí se přihlásit na app.buldo.cz."),
+     "Na počítači, notebooku, tabletu i chytrém telefonu. BULDO je webová aplikace, takže nic nestahujete ani neinstalujete. Přihlášení je chráněné dvoufázovým ověřením."),
     ("Ceny v ceníku platí pro jednu stavbu za jednoho uživatele?",
-     "Cena je za jednoho uživatele za měsíc a počet staveb není omezený. U tarifu Profi+ platíte jednu paušální částku za celou firmu pro 40 až 100 uživatelů."),
+     "Ne. U tarifů Basic, Standard a Profi platíte za aktivního uživatele, ne za stavbu. Počet staveb je ve všech tarifech neomezený. Profi+ má jednu cenu za celý účet pro 40 až 100 uživatelů."),
     ("Můžu si stavební deník stáhnout a vytisknout?",
-     "Ano. Deník kdykoli vyexportujete do PDF a můžete ho vytisknout. Elektronické podpisy jsou v tištěné verzi vyznačené u jednotlivých zápisů."),
+     "Ano. Celý deník nebo jen jeho část vyexportujete do PDF a můžete ho vytisknout. Pod každým podepsaným zápisem je uvedeno, kdo ho podepsal: jméno, funkce a společnost. Postup najdete v Poradně v části Export a tisk stavebního deníku."),
     ("Jakým způsobem můžu archivovat elektronický stavební deník?",
-     "Uzavřený deník zůstává uložený v aplikaci a kdykoli si ho stáhnete jako PDF s elektronickými podpisy pro vlastní archiv."),
+     "Deník můžete vyexportovat do PDF, případně vytisknout a uložit v papírové podobě. Stavbu lze také přepnout do režimu Archivovat: data zůstanou v cloudu a stavbu můžete později znovu aktivovat. Tlačítko Archivovat stavbu je na profilu stavby vlevo dole pod mapou."),
     ("Můžu dát dalším uživatelům přístup jen k části informací?",
-     "Ano. Každému internímu i externímu uživateli nastavíte práva, takže vidí a upravuje jen to, co potřebuje. Návod najdete v Poradně."),
+     "Ano. Každému uživateli stavby nastavíte konkrétní práva, takže vidí a upravuje jen to, co potřebuje. Postup je v Poradně v části Uživatelé stavby."),
 ]
 
 def acc(items, cls=""):
@@ -131,7 +131,7 @@ def page(title, desc, body, dark_header=False, current=""):
 <link rel="icon" href="assets/svg/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
