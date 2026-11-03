@@ -59,7 +59,7 @@ def header(dark, current):
     mlinks = "".join(f'<a href="{h}">{t}</a>' for t, h, _ in NAV)
     return f'''<header class="site-header {'header-dark' if dark else 'header-light'}">
   <nav class="nav" aria-label="Hlavní menu">
-    <a class="nav-logo" href="index.html" aria-label="BULDO, úvodní stránka"><img class="{cls}" src="assets/svg/{logo}" alt="BULDO" width="110" height="27"></a>
+    <a class="nav-logo" href="index.html" aria-label="BULDO, úvodní stránka"><img class="{cls}" src="assets/svg/{logo}" alt="BULDO" width="110" height="27">{'<img class="logo-alt" src="assets/svg/logo-grey.svg" alt="" width="110" height="27">' if dark else ''}</a>
     <ul class="nav-links">{links}</ul>
     <a class="btn btn-yellow" href="{REGISTER}">Vyzkoušet zdarma</a>
     <button class="nav-burger" type="button" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobile-menu"><span></span></button>
