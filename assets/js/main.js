@@ -24,21 +24,16 @@
     document.addEventListener('visibilitychange', () => { if (!document.hidden) tryPlay(); });
   }
 
-  /* ---------- Navbar jede se stránkou: dolů se schová, nahoru se ukáže ---------- */
+  /* ---------- Navbar jede se stránkou, mimo hero dostane světlé pozadí ---------- */
   const siteHeader = document.querySelector('.site-header');
   if (siteHeader) {
     const heroEl = document.querySelector('.hero');
-    let lastY = window.scrollY, hTick = false;
+    let hTick = false;
     const onHeader = () => {
       hTick = false;
       const y = window.scrollY;
       const limit = heroEl ? heroEl.offsetTop + heroEl.offsetHeight - 90 : 10;
       siteHeader.classList.toggle('is-stuck', y > limit);
-      if (Math.abs(y - lastY) > 6) {
-        siteHeader.classList.toggle('is-hidden', y > lastY && y > 200);
-        lastY = y;
-      }
-      if (y < 200) siteHeader.classList.remove('is-hidden');
     };
     window.addEventListener('scroll', () => { if (!hTick) { hTick = true; requestAnimationFrame(onHeader); } }, { passive: true });
     onHeader();

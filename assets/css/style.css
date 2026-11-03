@@ -82,7 +82,9 @@ h1, h2, h3, h4, p { margin: 0; }
 .site-header.is-stuck .nav { background: rgba(245,245,247,.82); -webkit-backdrop-filter: blur(20px) saturate(1.4); backdrop-filter: blur(20px) saturate(1.4); color: var(--ink); box-shadow: 0 6px 24px rgba(0,0,0,.08); }
 .header-dark.is-stuck .nav-logo .logo-white { display: none; }
 .header-dark.is-stuck .nav-logo .logo-alt { display: block; }
-.site-header.is-hidden { transform: translateY(calc(-100% - 24px)); }
+/* v hero je navbar 16 px od horního okraje obrázku (hero má sám 16 px od okraje okna), po odscrollování 16 px od okna */
+.header-dark { top: 32px; }
+.header-dark.is-stuck { transform: translateY(-16px); }
 .nav {
   display: flex; align-items: center; gap: 40px;
   height: 68px; padding: 0 10px 0 20px; border-radius: var(--radius-s);
@@ -145,7 +147,7 @@ video::-webkit-media-controls { display: none !important; }
 }
 @keyframes float { 50% { transform: translateY(-8px); } }
 
-.control { z-index: 2; position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding: 32px 0 100px; pointer-events: none; }
+.control { z-index: 2; position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding: 108px 0 100px; pointer-events: none; }
 .control > * { pointer-events: auto; }
 .scene-t2 { opacity: 0; }
 .control-fit { position: relative; width: 860px; height: calc(560px * var(--s, 1)); margin-top: 40px; }
@@ -450,7 +452,7 @@ video::-webkit-media-controls { display: none !important; }
   .help-side a { min-height: 60px; font-size: 16px; }
 }
 @media (max-width: 960px) {
-  .site-header { top: 24px; padding-inline: 24px; }
+  .site-header { top: 32px; padding-inline: 24px; }
   .header-light { top: 0; }
   .nav { width: 100%; justify-content: space-between; gap: 16px; height: 60px; padding: 0 8px 0 16px; }
   .nav-links, .nav > .btn { display: none; }
@@ -458,7 +460,6 @@ video::-webkit-media-controls { display: none !important; }
   .header-dark .nav-burger { color: var(--white); }
   .header-dark.is-stuck .nav-burger { color: var(--ink); }
   .nav-open.is-stuck .nav { background: transparent; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
-  .nav-open.is-hidden { transform: none; }
   .nav-burger span, .nav-burger span::before, .nav-burger span::after { display: block; width: 20px; height: 2px; border-radius: 2px; background: currentColor; position: relative; transition: transform .3s var(--ease), background .2s; }
   .nav-burger span::before, .nav-burger span::after { content: ""; position: absolute; left: 0; }
   .nav-burger span::before { top: -6px; } .nav-burger span::after { top: 6px; }
@@ -566,7 +567,7 @@ video::-webkit-media-controls { display: none !important; }
 /* nižší okna (notebooky): menší titulek scény a okraje, aby telefon a bubliny zůstaly velké */
 @media (min-width: 961px) and (max-height: 900px) {
   .scene-t2 { font-size: clamp(40px, 6.2vh, 64px); line-height: 1.05; }
-  .control { padding: 20px 0 100px; }
+  .control { padding: 100px 0 100px; }
   .control-fit { margin-top: 28px; }
   .scene-cta { margin-top: 20px; }
 }
