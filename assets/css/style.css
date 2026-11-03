@@ -210,7 +210,9 @@ video::-webkit-media-controls { display: none !important; }
 .bc-photo h3 { padding-top: 46px; }
 .bc-time { aspect-ratio: 696 / 432; }
 .bc-time .bg { filter: none; }
-.bc-time .time-card { height: auto; display: block; }
+.bc-time .time-card svg { position: relative; display: block; width: 100%; height: auto; }
+/* zamlžené pozadí pod kartou (tvar odpovídá obdélníku v SVG: y 10–174 z 206, rádius 28) */
+.bc-time .time-frost { position: absolute; left: 0; right: 0; top: 4.85%; height: 79.6%; border-radius: 4.93% / 13.6%; -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
 .bc-time .time-card { position: absolute; z-index: 2; left: 9.2%; right: 9.2%; bottom: 0; width: 81.6%; }
 .bc-time::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.15) 60%, rgba(0,0,0,.4)); }
 .bc-tablet::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0) 30%, rgba(0,0,0,.25)); }

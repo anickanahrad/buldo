@@ -20,7 +20,8 @@ def nico(path):
 
 # karta „Šetří čas" vložená přímo do HTML (jako <img> se v některých prohlížečích nenačetla)
 TIME_CARD = (ROOT / "assets/svg/karta-setri-cas.svg").read_text().replace(
-    '<svg ', '<svg class="time-card" role="img" aria-label="Papírový deník 8 hodin týdně, s BULDO 1 hodina. O 7 hodin méně papírování každý týden." ', 1)
+    '<svg ', '<svg role="img" aria-label="Papírový deník 8 hodin týdně, s BULDO 1 hodina. O 7 hodin méně papírování každý týden." ', 1)
+TIME_CARD = f'<div class="time-card"><span class="time-frost" aria-hidden="true"></span>{TIME_CARD}</div>'
 
 ICO_DENIK = '<img class="notif-ico" src="assets/svg/ikony/notif-denik.svg" alt="" width="32" height="32">'
 ICO_VICE = '<img class="notif-ico" src="assets/svg/ikony/notif-viceprace.svg" alt="" width="32" height="32">'
