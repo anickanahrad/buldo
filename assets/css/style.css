@@ -374,7 +374,7 @@ h1, h2, h3, h4, p { margin: 0; }
 .contact-info { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 32px; margin-top: 44px; max-width: 600px; }
 .contact-info a, .contact-info span { display: flex; align-items: center; gap: 14px; font-size: 16px; }
 .contact-info a:hover { text-decoration: underline; }
-.ci { flex: none; width: 32px; height: 32px; border-radius: 50%; background: var(--yellow); display: grid; place-items: center; }
+.ci { flex: none; width: 32px; height: 32px; }
 .ci svg { width: 16px; height: 16px; }
 .form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .field { position: relative; }

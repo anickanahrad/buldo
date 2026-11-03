@@ -11,17 +11,17 @@ REGISTER = "https://app.buldo.cz/register"
 
 # ---------- ikony ----------
 STAR = '<svg viewBox="0 0 20 20" aria-hidden="true"><path fill="#FFB82F" d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg>'
-CHECK = '<svg class="check" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#1D1D1F"/><path d="M7 12.4l3.2 3.1L17 8.8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+CHECK = '<img class="check" src="assets/svg/ikony/check.svg" alt="" width="22" height="22">'
 CHEVRON = '<svg width="14" height="22" viewBox="0 0 14 22" aria-hidden="true"><path d="M3 3l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 
 def nico(path):
     return ('<svg class="notif-ico" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#FFB82F"/>'
             f'<g fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{path}</g></svg>')
 
-ICO_DENIK = nico('<rect x="9" y="8" width="14" height="17" rx="2.5"/><path d="M13 8V6.5h6V8M12.5 16.5l2.5 2.5 4.5-5"/>')
-ICO_VICE = nico('<rect x="7" y="7" width="11" height="13" rx="2"/><rect x="13" y="12" width="11" height="13" rx="2" fill="#FFB82F"/><path d="M18.5 16v5M16 18.5h5"/>')
-ICO_FOTO = nico('<rect x="7" y="8" width="18" height="16" rx="3"/><circle cx="12.5" cy="13.5" r="1.8"/><path d="M8 22l5-5 4 3.5 3-2.5 5 4"/>')
-ICO_OK = nico('<path d="M10 16.5l4 4 8-9"/>')
+ICO_DENIK = '<img class="notif-ico" src="assets/svg/ikony/notif-denik.svg" alt="" width="32" height="32">'
+ICO_VICE = '<img class="notif-ico" src="assets/svg/ikony/notif-viceprace.svg" alt="" width="32" height="32">'
+ICO_FOTO = '<img class="notif-ico" src="assets/svg/ikony/notif-fotky.svg" alt="" width="32" height="32">'
+ICO_OK = '<img class="notif-ico" src="assets/svg/ikony/notif-hotovo.svg" alt="" width="32" height="32">'
 
 ICO = {
     "phone": '<svg viewBox="0 0 24 24"><path fill="#1D1D1F" d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 013 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg>',
@@ -403,10 +403,10 @@ kontakt_body = f'''<main>
     <h1>Máte zájem o Buldo nebo potřebujete poradit?</h1>
     <p class="contact-lead">Chcete se poradit, zda bude aplikace vyhovovat vašemu týmu? Potřebujete představit její možnosti nebo pomoci s výběrem vhodného tarifu? Zavolejte nám nebo nám pošlete zprávu prostřednictvím formuláře.</p>
     <div class="contact-info">
-      <a href="tel:+420737280800"><span class="ci">{ICO["phone"]}</span>+420 737 280 800</a>
-      <span><span class="ci">{ICO["clock"]}</span>Po - Pá: 9:00 - 17:00</span>
-      <a href="mailto:podpora@buldo.cz"><span class="ci">{ICO["mail"]}</span>podpora@buldo.cz</a>
-      <span><span class="ci">{ICO["pin"]}</span>Kovárenská 233/2a, Praha 6</span>
+      <a href="tel:+420737280800"><img class="ci" src="assets/svg/ikony/kontakt-telefon.svg" alt="" width="32" height="32">+420 737 280 800</a>
+      <span><img class="ci" src="assets/svg/ikony/kontakt-cas.svg" alt="" width="32" height="32">Po - Pá: 9:00 - 17:00</span>
+      <a href="mailto:podpora@buldo.cz"><img class="ci" src="assets/svg/ikony/kontakt-email.svg" alt="" width="32" height="32">podpora@buldo.cz</a>
+      <span><img class="ci" src="assets/svg/ikony/kontakt-adresa.svg" alt="" width="32" height="32">Kovárenská 233/2a, Praha 6</span>
     </div>
   </div>
   <form class="form" id="contact-form" novalidate>
