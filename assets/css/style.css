@@ -170,10 +170,9 @@ h1, h2, h3, h4, p { margin: 0; }
 .dark { background: var(--dark); color: var(--white); padding: 100px 0; }
 .features-box {
   position: relative; margin: 48px var(--gutter) 0; background: var(--black);
-  border-radius: var(--radius); overflow: hidden;
-  display: grid; grid-template-columns: 440px 1fr; align-items: center; aspect-ratio: 1408 / 717;
+  border-radius: var(--radius); overflow: hidden; aspect-ratio: 1408 / 717;
 }
-.features-nav { position: relative; display: flex; align-items: center; gap: 32px; padding-left: 32px; }
+.features-nav { position: absolute; z-index: 2; left: 0; top: 0; bottom: 0; display: flex; align-items: center; gap: 30px; padding-left: 3.4%; }
 .features-arrows { display: flex; flex-direction: column; gap: 12px; }
 .features-arrows button { width: 36px; height: 36px; border-radius: 50%; border: 0; background: #1C1C1E; color: var(--white); display: grid; place-items: center; transition: background .2s, opacity .2s; }
 .features-arrows button:hover { background: #2C2C2E; }
@@ -191,8 +190,9 @@ h1, h2, h3, h4, p { margin: 0; }
 .feature-tab[aria-selected="true"] .desc { display: inline; }
 .feature-tab[aria-selected="true"] .name { display: none; }
 .feature-tab .desc b { font-weight: 600; }
-.features-media { position: relative; align-self: stretch; }
-.features-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: center; opacity: 0; transition: opacity .4s; }
+.features-media { position: absolute; inset: 0; }
+/* MacBook usazený vpravo, přesahuje pravý okraj boxu (podle návrhu) */
+.features-media video { position: absolute; left: 31.4%; top: -3.8%; width: 105.7%; max-width: none; height: auto; opacity: 0; transition: opacity .4s; }
 .features-media video.active { opacity: 1; }
 
 .why { margin-top: 100px; }
@@ -469,13 +469,13 @@ h1, h2, h3, h4, p { margin: 0; }
   .notif { padding: 12px 16px; gap: 12px; font-size: 14px; line-height: 20px; white-space: normal; width: 300px; border-radius: 16px; }
   .notif-ico { width: 28px; height: 28px; }
   .n1 { left: 60px; top: 0; } .n2 { left: 0; top: 150px; } .n3 { left: 60px; top: 300px; } .n4 { left: 0; top: 450px; }
-  .features-box { grid-template-columns: 1fr; aspect-ratio: auto; }
-  .features-nav { padding: 32px 20px 0; }
+  .features-box { aspect-ratio: auto; }
+  .features-nav { position: relative; padding: 32px 20px 0; }
   .features-arrows { display: none; }
   .features-list { flex-direction: row; flex-wrap: wrap; gap: 8px; }
   .feature-tab[aria-selected="true"] { max-width: 100%; }
-  .features-media { aspect-ratio: 16 / 9; }
-  .features-media video { left: 0; width: 100%; }
+  .features-media { position: relative; aspect-ratio: 16 / 9; }
+  .features-media video { left: 0; top: 0; width: 100%; }
   .bento { grid-template-columns: 1fr; }
   .bc-tablet h3 { padding-left: 40px; }
   .trial { grid-template-columns: 1fr; padding: 48px 24px 0; }
