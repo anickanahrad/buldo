@@ -102,7 +102,8 @@
           const g = geo[i];
           const k = easeInOut(range(p, .12 + i * .015, .5 + i * .015));
           const sc = 1 - k * (1 - (g.pw * .25) / g.w);
-          el.style.transform = `translate(${g.dx * k}px, ${g.dy * k}px) scale(${sc}) rotate(${k * (i % 2 ? 8 : -8)}deg)`;
+          // v klidu žádná transformace, aby papírky zůstaly ostré
+          el.style.transform = k === 0 ? 'none' : `translate(${g.dx * k}px, ${g.dy * k}px) scale(${sc}) rotate(${k * (i % 2 ? 8 : -8)}deg)`;
           el.style.opacity = 1 - range(p, .42 + i * .015, .52 + i * .015);
         });
 
